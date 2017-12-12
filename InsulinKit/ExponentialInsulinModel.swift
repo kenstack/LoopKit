@@ -51,6 +51,7 @@ extension ExponentialInsulinModel: InsulinModel {
     /// - Returns: The percentage of total insulin effect remaining
 
     public func percentEffectRemaining(at time: TimeInterval) -> Double {
+        print("initial delay ",initialDelay)
         switch time {
         case let t where t <= initialDelay:
             return 1
