@@ -23,6 +23,7 @@ public struct ExponentialInsulinModel {
     /// - Parameters:
     ///   - actionDuration: The total duration on insulin activity
     ///   - peakActivityTime: The time of the peak of insulin activity from dose.
+    ///   - initialDelay: The time before insulin starts to affect blood sugar
     public init(actionDuration: TimeInterval, peakActivityTime: TimeInterval, initialDelay:TimeInterval) {
         self.actionDuration = actionDuration
         self.peakActivityTime = peakActivityTime
@@ -51,7 +52,6 @@ extension ExponentialInsulinModel: InsulinModel {
     /// - Returns: The percentage of total insulin effect remaining
 
     public func percentEffectRemaining(at time: TimeInterval) -> Double {
-        print("initial delay ",initialDelay)
         switch time {
         case let t where t <= initialDelay:
             return 1
