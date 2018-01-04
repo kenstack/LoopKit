@@ -167,7 +167,7 @@ public class GlucoseRangeScheduleTableViewController: DailyValueScheduleTableVie
             case .preMeal:
                 image = UIImage(named: "Pre-Meal", in: bundle, compatibleWith: traitCollection)
             case .remoteTempTarget:
-                image = UIImage(named: "Pre-Meal", in: bundle, compatibleWith: traitCollection)
+                image = nil
             }
 
             cell.iconImageView.image = image
