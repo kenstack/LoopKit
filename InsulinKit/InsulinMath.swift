@@ -70,7 +70,35 @@ extension DoseEntry {
         return value
     }
 
-    func glucoseEffect(at date: Date, model: InsulinModel, insulinSensitivity: Double, delay: TimeInterval, delta: TimeInterval) -> Double 4
+    func glucoseEffect(at date: Date, model: InsulinModel, insulinSensitivity: Double, delay: TimeInterval, delta: TimeInterval) -> Double {
+        let time = date.timeIntervalSince(startDate)
+        
+        guard time >= 0 else {
+            return 0
+        }
+        
+        // Consider doses within the delta time window as momentary
+        if endDate.timeIntervalSince(startDate) <= 1.05 * delta {
+            return units * -insulinSensitivity * (1.0 - model.percentEffectRemaining(at: time - delay))
+        } else {
+            return units * -insulinSensitivity * continuousDeliveryGlucoseEffect(at: date, model: model, delay: delay, delta: delta)
+        }
+    }
+    
+    func trim(to end: Date?) -> DoseEntry {
+        if let end = end, unit == .unitsPerHour, endDate > end {
+            return DoseEntry(
+                type: type,
+                startDate: startDate,
+                endDate: end,
+                value: value,
+                unit: unit,
+                description: description
+            )
+        } else {
+            return self
+        }
+    }
 }
 
 
@@ -203,9 +231,6 @@ extension DoseEntry {
                 endDate = basalItems[index + 1].startDate
             }
 
-            
-
-            
             // Ignore net-zero basals
             guard abs(unitsPerHour) > .ulpOfOne else {
                 continue
