@@ -70,20 +70,7 @@ extension DoseEntry {
         return value
     }
 
-    func glucoseEffect(at date: Date, model: InsulinModel, insulinSensitivity: Double, delay: TimeInterval, delta: TimeInterval) -> Double {
-        let time = date.timeIntervalSince(startDate)
-
-        guard time >= 0 else {
-            return 0
-        }
-
-        // Consider doses within the delta time window as momentary
-        if endDate.timeIntervalSince(startDate) <= 1.05 * delta {
-            return units * -insulinSensitivity * (1.0 - model.percentEffectRemaining(at: time - delay))
-        } else {
-            return units * -insulinSensitivity * continuousDeliveryGlucoseEffect(at: date, model: model, delay: delay, delta: delta)
-        }
-    }
+    func glucoseEffect(at date: Date, model: InsulinModel, insulinSensitivity: Double, delay: TimeInterval, delta: TimeInterval) -> Double 4
 }
 
 
@@ -219,6 +206,14 @@ extension DoseEntry {
             // Ignore net-zero basals
             guard abs(unitsPerHour) > .ulpOfOne else {
                 continue
+            }
+            //////////////////////////////
+            //MODIFIED
+            //ignore some negative IOB to avoid drops when already low
+            /////////////////////////////
+            
+            if unitsPerHour < 0 {
+                unitsPerHour = unitsPerHour / 4.0
             }
 
             normalizedDoses.append(DoseEntry(

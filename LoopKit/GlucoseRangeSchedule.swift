@@ -130,7 +130,7 @@ public struct GlucoseRangeSchedule: DailySchedule {
         guard let value = overrideRanges[context], end > start, !value.isZero else {
             return false
         }
-
+        
         override = Override(context: context, start: start, end: end, value: value)
         return true
     }
