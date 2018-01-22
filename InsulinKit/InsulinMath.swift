@@ -206,7 +206,7 @@ extension DoseEntry {
             
 
             
-             Ignore net-zero basals
+            // Ignore net-zero basals
             guard abs(unitsPerHour) > .ulpOfOne else {
                 continue
             }
