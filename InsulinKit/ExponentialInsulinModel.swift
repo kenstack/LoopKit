@@ -59,7 +59,7 @@ extension ExponentialInsulinModel: InsulinModel {
             return 0
         default:
             return 1 - S * (1 - a) *
-                ((pow(time, 2) / (τ * actionDuration * (1 - a)) - (time - initialDelay) / τ - 1) * exp(-(time - initialDelay) / τ) + 1)
+                ((pow(time - initialDelay, 2) / (τ * actionDuration * (1 - a)) - (time - initialDelay) / τ - 1) * exp(-(time - initialDelay) / τ) + 1)
         }
     }
 }
