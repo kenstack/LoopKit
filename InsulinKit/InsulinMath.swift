@@ -244,7 +244,7 @@ extension DoseEntry {
             /////////////////////////////
             
             if unitsPerHour < 0.0  {
-                unitsPerHour = unitsPerHour / 4.0
+                unitsPerHour = unitsPerHour / 2.0
             }
             
 
