@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11CDAE3F2038B0F200670637 /* ns-temp-blue.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 11CDAE3E2038B0F200670637 /* ns-temp-blue.pdf */; };
 		2FD1A6B01E4A76CC0042EF39 /* CarbEntryValidationNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD1A6AF1E4A76CC0042EF39 /* CarbEntryValidationNavigationDelegate.swift */; };
 		4300591E1CCDC65B00C861EA /* NSTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D8FDF21C7290350073BE78 /* NSTimeInterval.swift */; };
 		4300591F1CCDC67900C861EA /* NSTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D8FDF21C7290350073BE78 /* NSTimeInterval.swift */; };
@@ -333,6 +334,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		11CDAE3E2038B0F200670637 /* ns-temp-blue.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "ns-temp-blue.pdf"; sourceTree = "<group>"; };
 		2FBCE30E1E4A4B8A008AF09C /* CarbEntryEditViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarbEntryEditViewControllerTests.swift; sourceTree = "<group>"; };
 		2FD1A6AF1E4A76CC0042EF39 /* CarbEntryValidationNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarbEntryValidationNavigationDelegate.swift; sourceTree = "<group>"; };
 		430157F71C7EC03B00B64B63 /* LoopKit Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LoopKit Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -780,6 +782,7 @@
 			isa = PBXGroup;
 			children = (
 				43177D091D3732C70006E908 /* Assets.xcassets */,
+				11CDAE3E2038B0F200670637 /* ns-temp-blue.pdf */,
 				434FB6491D712158007B9C70 /* CommandResponseViewController.swift */,
 				43D8FE041C7290530073BE78 /* DailyQuantityScheduleTableViewController.swift */,
 				43D8FE051C7290530073BE78 /* DailyValueScheduleTableViewController.swift */,
@@ -1376,6 +1379,7 @@
 				43177D081D37306D0006E908 /* GlucoseRangeOverrideTableViewCell.xib in Resources */,
 				43D8FE161C7290530073BE78 /* RepeatingScheduleValueTableViewCell.xib in Resources */,
 				434FF1F11CF29451000DB779 /* TextFieldTableViewCell.xib in Resources */,
+				11CDAE3F2038B0F200670637 /* ns-temp-blue.pdf in Resources */,
 				43D8FE131C7290530073BE78 /* GlucoseRangeTableViewCell.xib in Resources */,
 				43177D0A1D3732C70006E908 /* Assets.xcassets in Resources */,
 			);
