@@ -215,7 +215,7 @@ extension DoseEntry {
         let basalItems = basalSchedule.between(start: startDate, end: endDate)
 
         for (index, basalItem) in basalItems.enumerated() {
-            let unitsPerHour = self.unitsPerHour - basalItem.value
+            var unitsPerHour = self.unitsPerHour - basalItem.value
             let startDate: Date
             let endDate: Date
 
@@ -234,6 +234,16 @@ extension DoseEntry {
             // Ignore net-zero basals
             guard abs(unitsPerHour) > .ulpOfOne else {
                 continue
+            }
+            
+            //////////////////////////////
+            //MODIFIED
+            //ignore some negative IOB to avoid drops when already low
+            //ignore any negative basal
+            /////////////////////////////
+            
+            if unitsPerHour < 0.0  {
+                unitsPerHour = unitsPerHour / 2.0
             }
 
             normalizedDoses.append(DoseEntry(
