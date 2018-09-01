@@ -136,7 +136,7 @@ public class DeliveryLimitSettingsTableViewController: UITableViewController {
     }
 
     public override func numberOfSections(in tableView: UITableView) -> Int {
-        return syncSource == nil ? 2 : 3 : 4
+        return syncSource == nil ? 2 : 4
     }
 
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
