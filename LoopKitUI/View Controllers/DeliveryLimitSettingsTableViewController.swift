@@ -18,7 +18,7 @@ public protocol DeliveryLimitSettingsTableViewControllerDelegate: class {
 
 
 public enum DeliveryLimitSettingsResult {
-    case success(maximumBasalRatePerHour: Double, maximumBolus: Double, MaximumIOB: Double)
+    case success(maximumBasalRatePerHour: Double, maximumBolus: Double, maximumIOB: Double)
     case failure(Error)
 }
 
@@ -131,11 +131,12 @@ public class DeliveryLimitSettingsTableViewController: UITableViewController {
     private enum Section: Int {
         case basalRate
         case bolus
+        case iob
         case sync
     }
 
     public override func numberOfSections(in tableView: UITableView) -> Int {
-        return syncSource == nil ? 2 : 3
+        return syncSource == nil ? 2 : 3 : 4
     }
 
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -209,6 +210,8 @@ public class DeliveryLimitSettingsTableViewController: UITableViewController {
             return NSLocalizedString("Maximum Basal Rate", comment: "The title text for the maximum basal rate value")
         case .bolus:
             return NSLocalizedString("Maximum Bolus", comment: "The title text for the maximum bolus value")
+        case .iob:
+            return NSLocalizedString("Maximum IOB", comment: "The title text for the maximum correction iob value")
         case .sync:
             return nil
         }
@@ -219,6 +222,8 @@ public class DeliveryLimitSettingsTableViewController: UITableViewController {
         case .basalRate:
             return nil
         case .bolus:
+            return nil
+        case .iob:
             return nil
         case .sync:
             return syncSource?.syncButtonDetailText(for: self)
@@ -231,7 +236,7 @@ public class DeliveryLimitSettingsTableViewController: UITableViewController {
 
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch Section(rawValue: indexPath.section)! {
-        case .basalRate, .bolus:
+        case .basalRate, .bolus, .iob:
             if let cell = tableView.cellForRow(at: indexPath) as? TextFieldTableViewCell {
                 if cell.textField.isFirstResponder {
                     cell.textField.resignFirstResponder()
