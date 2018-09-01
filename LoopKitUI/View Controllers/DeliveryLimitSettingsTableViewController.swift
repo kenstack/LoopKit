@@ -12,11 +12,13 @@ public protocol DeliveryLimitSettingsTableViewControllerDelegate: class {
     func deliveryLimitSettingsTableViewControllerDidUpdateMaximumBasalRatePerHour(_ vc: DeliveryLimitSettingsTableViewController)
 
     func deliveryLimitSettingsTableViewControllerDidUpdateMaximumBolus(_ vc: DeliveryLimitSettingsTableViewController)
+    
+    func deliveryLimitSettingsTableViewControllerDidUpdateMaximumIOB(_ vc: DeliveryLimitSettingsTableViewController)
 }
 
 
 public enum DeliveryLimitSettingsResult {
-    case success(maximumBasalRatePerHour: Double, maximumBolus: Double)
+    case success(maximumBasalRatePerHour: Double, maximumBolus: Double, MaximumIOB: Double)
     case failure(Error)
 }
 
@@ -63,6 +65,18 @@ public class DeliveryLimitSettingsTableViewController: UITableViewController {
             if isViewLoaded, let cell = tableView.cellForRow(at: IndexPath(row: 0, section: Section.bolus.rawValue)) as? TextFieldTableViewCell {
                 if let maximumBolus = maximumBolus {
                     cell.textField.text = valueNumberFormatter.string(from: maximumBolus)
+                } else {
+                    cell.textField.text = nil
+                }
+            }
+        }
+    }
+    
+    public var maximumIOB: Double? {
+        didSet {
+            if isViewLoaded, let cell = tableView.cellForRow(at: IndexPath(row: 0, section: Section.iob.rawValue)) as? TextFieldTableViewCell {
+                if let maximumIOB = maximumIOB {
+                    cell.textField.text = valueNumberFormatter.string(from: maximumIOB)
                 } else {
                     cell.textField.text = nil
                 }
@@ -162,6 +176,22 @@ public class DeliveryLimitSettingsTableViewController: UITableViewController {
             cell.delegate = self
 
             return cell
+        case .iob:
+            let cell = tableView.dequeueReusableCell(withIdentifier: TextFieldTableViewCell.className, for: indexPath) as! TextFieldTableViewCell
+            
+            if let maximumIOB = maximumIOB {
+                cell.textField.text = valueNumberFormatter.string(from: maximumIOB)
+            } else {
+                cell.textField.text = nil
+            }
+            cell.textField.keyboardType = .decimalPad
+            cell.textField.placeholder = isReadOnly ? NSLocalizedString("Enter a number of units", comment: "The placeholder text instructing users how to enter maximum iob") : nil
+            cell.textField.isEnabled = !isReadOnly && !isSyncInProgress
+            cell.unitLabel?.text = NSLocalizedString("Units", comment: "The unit string for units")
+            
+            cell.delegate = self
+            
+            return cell
         case .sync:
             let cell = tableView.dequeueReusableCell(withIdentifier: TextButtonTableViewCell.className, for: indexPath) as! TextButtonTableViewCell
 
@@ -220,12 +250,14 @@ public class DeliveryLimitSettingsTableViewController: UITableViewController {
             syncSource.syncDeliveryLimitSettings(for: self) { (result) in
                 DispatchQueue.main.async {
                     switch result {
-                    case .success(maximumBasalRatePerHour: let maxBasal, maximumBolus: let maxBolus):
+                    case .success(maximumBasalRatePerHour: let maxBasal, maximumBolus: let maxBolus, maximumIOB: let maxIOB):
                         self.maximumBasalRatePerHour = maxBasal
                         self.maximumBolus = maxBolus
+                        self.maximumIOB = maxIOB
 
                         self.delegate?.deliveryLimitSettingsTableViewControllerDidUpdateMaximumBasalRatePerHour(self)
                         self.delegate?.deliveryLimitSettingsTableViewControllerDidUpdateMaximumBolus(self)
+                        self.delegate?.deliveryLimitSettingsTableViewControllerDidUpdateMaximumIOB(self)
 
                         self.isSyncInProgress = false
                     case .failure(let error):
@@ -263,6 +295,11 @@ extension DeliveryLimitSettingsTableViewController: TextFieldTableViewCellDelega
             maximumBolus = value
             if syncSource == nil {
                 delegate?.deliveryLimitSettingsTableViewControllerDidUpdateMaximumBolus(self)
+            }
+        case .iob:
+            maximumIOB = value
+            if syncSource == nil {
+                delegate?.deliveryLimitSettingsTableViewControllerDidUpdateMaximumIOB(self)
             }
         case .sync:
             break
