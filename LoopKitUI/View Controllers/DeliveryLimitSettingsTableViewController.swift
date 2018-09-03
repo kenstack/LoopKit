@@ -183,8 +183,6 @@ public class DeliveryLimitSettingsTableViewController: UITableViewController {
             return NSLocalizedString("Maximum Basal Rate", comment: "The title text for the maximum basal rate value")
         case .bolus:
             return NSLocalizedString("Maximum Bolus", comment: "The title text for the maximum bolus value")
-        case .iob:
-            return NSLocalizedString("Maximum IOB", comment: "The title text for the maximum correction iob value")
         case .sync:
             return nil
         }
@@ -196,8 +194,7 @@ public class DeliveryLimitSettingsTableViewController: UITableViewController {
             return nil
         case .bolus:
             return nil
-        case .iob:
-            return nil
+    
         case .sync:
             return syncSource?.syncButtonDetailText(for: self)
         }
@@ -209,7 +206,7 @@ public class DeliveryLimitSettingsTableViewController: UITableViewController {
 
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch Section(rawValue: indexPath.section)! {
-        case .basalRate, .bolus, .iob:
+        case .basalRate, .bolus:
             if let cell = tableView.cellForRow(at: indexPath) as? TextFieldTableViewCell {
                 if cell.textField.isFirstResponder {
                     cell.textField.resignFirstResponder()
