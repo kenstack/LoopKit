@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		117F9E3B23E65ED10065B218 /* normalized_doses_negiob.json in Resources */ = {isa = PBXBuildFile; fileRef = 117F9E3A23E65ED10065B218 /* normalized_doses_negiob.json */; };
 		1F5DAB1D2118C95700048054 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DAB1C2118C95700048054 /* LocalizedString.swift */; };
 		1F5DAB1F2118C95700048054 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DAB1C2118C95700048054 /* LocalizedString.swift */; };
 		1F5DAB202118C95700048054 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DAB1C2118C95700048054 /* LocalizedString.swift */; };
@@ -651,6 +652,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		117F9E3A23E65ED10065B218 /* normalized_doses_negiob.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = normalized_doses_negiob.json; sourceTree = "<group>"; };
 		1F50C321212B20D300C18FAB /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/CarbKit.strings; sourceTree = "<group>"; };
 		1F50C322212B20D300C18FAB /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InsulinKit.strings; sourceTree = "<group>"; };
 		1F50C324212B20D300C18FAB /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1753,6 +1755,7 @@
 				43CE7CED1CA9F2CF003CC1B0 /* normalize_edge_case_doses_input.json */,
 				43CE7CEF1CA9F32C003CC1B0 /* normalize_edge_case_doses_output.json */,
 				43B99B011C7451E500D050F5 /* normalized_doses.json */,
+				117F9E3A23E65ED10065B218 /* normalized_doses_negiob.json */,
 				43D8FED01C7294B80073BE78 /* normalized_reservoir_history_output.json */,
 				434872781CB6256500E55D75 /* reconcile_history_input.json */,
 				4348727C1CB626E500E55D75 /* reconcile_history_output.json */,
@@ -2332,6 +2335,7 @@
 				4322B7AC202FA3D20002837D /* momentum_effect_stable_glucose_output.json in Resources */,
 				437874BC202FDD2D00A3D8B9 /* effect_from_history_output.json in Resources */,
 				437874C7202FDD2D00A3D8B9 /* iob_from_reservoir_output.json in Resources */,
+				117F9E3B23E65ED10065B218 /* normalized_doses_negiob.json in Resources */,
 				4322B794202FA3CC0002837D /* carb_entry_input.json in Resources */,
 				437874B8202FDD2D00A3D8B9 /* bolus_dose.json in Resources */,
 				43D8FEF71C7295500073BE78 /* basal.json in Resources */,

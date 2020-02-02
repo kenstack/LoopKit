@@ -98,7 +98,19 @@ extension DoseEntry {
         }
 
         let scheduledUnits = scheduledUnitsPerHour * hours
-        return unitsInDeliverableIncrements - scheduledUnits
+        
+        //reduce effect of negartive iob by a multiplier
+
+        var netUnits : Double
+        netUnits = unitsInDeliverableIncrements - scheduledUnits
+        
+        if netUnits < 0.0 {
+            let negIobMultiplier = 0.5
+            netUnits = netUnits * negIobMultiplier
+        }
+        
+        return netUnits
+        
     }
 
     /// The rate of delivery, net the basal rate scheduled during that time, which can be used to compute insulin on-board and glucose effects
