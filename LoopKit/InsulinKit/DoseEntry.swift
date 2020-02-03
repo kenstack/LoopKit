@@ -77,7 +77,6 @@ extension DoseEntry {
 
     /// The number of units delivered, net the basal rate scheduled during that time, which can be used to compute insulin on-board and glucose effects
     public var netBasalUnits: Double {
-        print("****innetBasalUNits*****")
         switch type {
         case .bolus:
             return deliveredUnits ?? programmedUnits
@@ -104,13 +103,9 @@ extension DoseEntry {
 
         var netUnits : Double
         netUnits = unitsInDeliverableIncrements - scheduledUnits
-        print("****net units")
-        print(netUnits)
         if netUnits < 0.0 {
-            print("****IN neg dose*****")
             let negIobMultiplier = 0.5
             netUnits = netUnits * negIobMultiplier
-            print("****modified net units")
         }
         
         return netUnits
@@ -130,23 +125,16 @@ extension DoseEntry {
             return 0
         }
 
-
-        
-        
-        
-        
-        //////////////////////////////
+     //////////////////////////////
         //MODIFIED
         //ignore some negative IOB to avoid drops when already low
         /////////////////////////////
         
         var unitsPerHour = self.unitsPerHour - basalRate.doubleValue(for: DoseEntry.unitsPerHour)
         
-    print("******")
-        print("******in units per hour")
-        
         if unitsPerHour < 0.0  {
-            unitsPerHour = unitsPerHour * 0.5
+            let negIobMultiplier = 0.5
+            unitsPerHour = unitsPerHour * negIobMultiplier
         }
 
         guard abs(unitsPerHour) > .ulpOfOne else {
