@@ -248,22 +248,44 @@ class InsulinMathTests: XCTestCase {
     }
 
     func testIOBFromDoses() {
-        let input = loadDoseFixture("normalized_doses")
-        let output = loadInsulinValueFixture("iob_from_doses_output")
+        
+        let basalsnegiob = loadBasalRateScheduleFixture("basal")
+        
+        let input = loadDoseFixture("normalized_doses_negiob")
+//        let output = loadInsulinValueFixture("iob_from_doses_output")
         let insulinModel = WalshInsulinModel(actionDuration: TimeInterval(hours: 4))
-
-        measure {
-            _ = input.insulinOnBoard(model: insulinModel)
-        }
-
+//
+//        measure {
+//            _ = input.insulinOnBoard(model: insulinModel)
+//        }
+//
         let iob = input.insulinOnBoard(model: insulinModel)
-
-        XCTAssertEqual(output.count, iob.count)
-
-        for (expected, calculated) in zip(output, iob) {
-            XCTAssertEqual(expected.startDate, calculated.startDate)
-            XCTAssertEqual(expected.value, calculated.value, accuracy: 0.5)
-        }
+        print (iob)
+        print ("done")
+//
+//        XCTAssertEqual(output.count, iob.count)
+//
+//        for (expected, calculated) in zip(output, iob) {
+//            XCTAssertEqual(expected.startDate, calculated.startDate)
+//            XCTAssertEqual(expected.value, calculated.value, accuracy: 0.5)
+//        }
+        
+//        let input = loadDoseFixture("normalized_doses")
+//               let output = loadInsulinValueFixture("iob_from_doses_output")
+//               let insulinModel = WalshInsulinModel(actionDuration: TimeInterval(hours: 4))
+//
+//               measure {
+//                   _ = input.insulinOnBoard(model: insulinModel)
+//               }
+//
+//               let iob = input.insulinOnBoard(model: insulinModel)
+//
+//               XCTAssertEqual(output.count, iob.count)
+//
+//               for (expected, calculated) in zip(output, iob) {
+//                   XCTAssertEqual(expected.startDate, calculated.startDate)
+//                   XCTAssertEqual(expected.value, calculated.value, accuracy: 0.5)
+//               }
     }
 
     func testIOBFromNoDoses() {
