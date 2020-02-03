@@ -142,7 +142,8 @@ extension DoseEntry {
         
         var unitsPerHour = self.unitsPerHour - basalRate.doubleValue(for: DoseEntry.unitsPerHour)
         
-    
+    print("******")
+        print("******in units per hour")
         
         if unitsPerHour < 0.0  {
             unitsPerHour = unitsPerHour * 0.5
